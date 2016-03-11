@@ -67,7 +67,16 @@ attr_reader :value, :parent
   end
 
   def bfs(target)
+    queue = [self]
+    return self if self.value == target
+    until queue.empty?
+      queue.each do |first|
+        return first if first.value == target
+        queue += first.children
+        queue.shift
+      end
+    end
 
-
+    nil
   end
 end
